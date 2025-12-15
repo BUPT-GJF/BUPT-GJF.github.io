@@ -1,4 +1,5 @@
 ---
+layout: single
 title: "分布式智能路由方法、系统、电子设备和存储介质"
 collection: patents
 permalink: /patents/2023-smart-routing
