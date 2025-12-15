@@ -4,7 +4,7 @@ collection: teaching
 type: "本科生课程"
 permalink: /teaching/matlab-and-introduction-to-machine-learning
 venue: "北京邮电大学"
-# date: 2023-01-01
+date: 2024-09-01
 location: "北京，中国"
 ---
 
