@@ -7,6 +7,40 @@ author_profile: true
 
 {% include base_path %}
 
+<script>
+function toggleSection(id, btnId) {
+  var x = document.getElementById(id);
+  var btn = document.getElementById(btnId);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    btn.innerHTML = "收起列表 (Collapse)";
+  } else {
+    x.style.display = "none";
+    btn.innerHTML = "展开全部 (Show All)";
+  }
+}
+</script>
+
+<style>
+/* 美化一下按钮 */
+.show-more-btn {
+  background-color: #f2f3f3;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.show-more-btn:hover {
+  background-color: #e6e6e6;
+}
+</style>
+
 ## 1. 研究领域 (Research Areas)
 
 智算融合网络、智慧协同网络、智慧路由、异质异构网络安全。
@@ -29,10 +63,21 @@ author_profile: true
 
 ## 3. 发明专利 (Patents)
 
-{% for post in site.patents reversed %}
-  * **[{{ post.title }}]({{ post.url }})**
+{% for post in site.patents reversed limit:5 %}
+  <li>
+      <strong><a href="{{ post.url }}">{{ post.title }}</a></strong>
+  </li>
 {% endfor %}
 
+<div id="more-patents" style="display:none;">
+{% for post in site.patents reversed offset:5 %}
+  <li>
+      <strong><a href="{{ post.url }}">{{ post.title }}</a></strong>
+  </li>
+{% endfor %}
+</div>
+
+<button id="btn-patents" class="show-more-btn" onclick="toggleSection('more-patents', 'btn-patents')">展开全部 (Show All)</button>
 ---
 
 ## 4. 著作成果 (Books)
@@ -45,6 +90,14 @@ author_profile: true
 ## 5. 论文成果 (Publications)
 
 
-{% for post in site.publications reversed %}
+{% for post in site.publications reversed limit:5 %}
   {% include archive-single.html %}
 {% endfor %}
+
+<div id="more-papers" style="display:none;">
+{% for post in site.publications reversed offset:5 %}
+  {% include archive-single.html %}
+{% endfor %}
+</div>
+
+<button id="btn-papers" class="show-more-btn" onclick="toggleSection('more-papers', 'btn-papers')">展开全部 (Show All)</button>
