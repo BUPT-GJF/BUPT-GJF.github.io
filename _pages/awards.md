@@ -5,9 +5,36 @@ permalink: /awards/
 author_profile: true
 ---
 
+{% include base_path %}
 
-* 2024年度北京市科学技术奖科技进步奖，2025-05-15
-* 2024年度中华中医药学会科学技术奖·中医药科学技术奖，2024-11-30
-* 2023年度中国电子学会科学技术奖科技进步奖2024-03-31
-* 吴文俊人工智能技术发明奖，2019-11-30
-* 北京市科学技术奖自然科学奖，2020-08-17
+<style>
+/* 列表样式优化 */
+ul.award-list {
+  margin-left: 20px; 
+  list-style-type: disc; 
+}
+ul.award-list li {
+  margin-bottom: 15px; 
+}
+/* 辅助信息样式 (年份、级别) */
+.award-meta {
+  font-size: 0.85em;
+  color: #666;
+  font-style: italic;
+  display: block; 
+  margin-top: 2px;
+}
+</style>
+
+
+<ul class="award-list">
+{% for post in site.awards reversed %}
+  <li>
+      <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
+      
+      <span class="award-meta">
+        {{ post.date | date: "%Y" }} | {{ post.excerpt }}
+      </span>
+  </li>
+{% endfor %}
+</ul>

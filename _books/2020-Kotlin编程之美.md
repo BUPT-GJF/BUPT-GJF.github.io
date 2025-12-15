@@ -3,7 +3,7 @@ layout: single
 title: "Kotlin编程之美"
 collection: books
 permalink: /books/2020-Kotlin编程之美
-date: 22020-04-01
+date: 2020-04-01
 publisher: "机械工业出版社"
 ---
 
