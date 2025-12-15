@@ -16,4 +16,4 @@ venue: 'IEEE Internet of Things Journal'
 * **刊物/会议**: IEEE Internet of Things Journal
 * **作者名单**: Kexian Liu
 
-[查看PDF](#) (如有需要请在 Markdown 中手动添加链接)
+

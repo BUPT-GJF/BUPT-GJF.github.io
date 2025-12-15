@@ -39,7 +39,7 @@ function toggleSection(id, btnId) {
   background-color: #e6e6e6;
 }
 ul.patent-list {
-  margin-left: 20px; /* 调整整体左边距 */
+  margin-left: 10px; /* 调整整体左边距 */
   list-style-type: disc; /* 强制显示圆点 */
 }
 ul.patent-list li {
@@ -106,14 +106,30 @@ ul.patent-list li {
 
 ## 5. 论文成果 (Publications)
 
+<ul class="research-list">
 {% for post in site.publications reversed limit:5 %}
-  {% include archive-single.html %}
+  <li>
+      <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
+      <br>
+      <span class="venue-meta">
+        {{ post.venue }} {% if post.date %}| {{ post.date | date: "%Y" }}{% endif %}
+      </span>
+  </li>
 {% endfor %}
+</ul>
 
 <div id="more-papers" style="display:none;">
-{% for post in site.publications reversed offset:5 %}
-  {% include archive-single.html %}
-{% endfor %}
+  <ul class="research-list">
+  {% for post in site.publications reversed offset:5 %}
+    <li>
+        <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
+        <br>
+        <span class="venue-meta">
+          {{ post.venue }} {% if post.date %}| {{ post.date | date: "%Y" }}{% endif %}
+        </span>
+    </li>
+  {% endfor %}
+  </ul>
 </div>
 
 <button id="btn-papers" class="show-more-btn" onclick="toggleSection('more-papers', 'btn-papers')">展开全部 (Show All)</button>
