@@ -8,8 +8,14 @@
 #      Markdown formatted page while the second is generated using JSON.
 
 main:
-  - title: "发表论文"
-    url: /publications/
+  - title: "首页"
+    url: /
+
+  - title: "科学研究"  # 改成了这个，整合了论文、项目、专利
+    url: /research/
+
+  # - title: "发表论文"
+  #   url: /publications/
     
   # - title: "科研项目" 
   #   url: /projects/
@@ -20,7 +26,7 @@ main:
   - title: "教学课程"
     url: /teaching/    
     
-  # - title: "获奖荣誉"  # 您有吴文俊奖等多个重要奖项
+  # - title: "获奖荣誉"
   #   url: /awards/
   
   # - title: "Portfolio"
