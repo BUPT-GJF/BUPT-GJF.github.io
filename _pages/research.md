@@ -22,7 +22,6 @@ function toggleSection(id, btnId) {
 </script>
 
 <style>
-/* 美化一下按钮 */
 .show-more-btn {
   background-color: #f2f3f3;
   border: 1px solid #ccc;
@@ -38,6 +37,13 @@ function toggleSection(id, btnId) {
 }
 .show-more-btn:hover {
   background-color: #e6e6e6;
+}
+ul.patent-list {
+  margin-left: 20px; /* 调整整体左边距 */
+  list-style-type: disc; /* 强制显示圆点 */
+}
+ul.patent-list li {
+  margin-bottom: 5px; /* 条目间距 */
 }
 </style>
 
@@ -63,32 +69,42 @@ function toggleSection(id, btnId) {
 
 ## 3. 发明专利 (Patents)
 
+<ul class="patent-list">
 {% for post in site.patents reversed limit:5 %}
   <li>
-      <strong><a href="{{ post.url }}">{{ post.title }}</a></strong>
+      <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
   </li>
 {% endfor %}
+</ul>
 
 <div id="more-patents" style="display:none;">
-{% for post in site.patents reversed offset:5 %}
-  <li>
-      <strong><a href="{{ post.url }}">{{ post.title }}</a></strong>
-  </li>
-{% endfor %}
+  <ul class="patent-list">
+  {% for post in site.patents reversed offset:5 %}
+    <li>
+        <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
+    </li>
+  {% endfor %}
+  </ul>
 </div>
 
 <button id="btn-patents" class="show-more-btn" onclick="toggleSection('more-patents', 'btn-patents')">展开全部 (Show All)</button>
+
 ---
 
 ## 4. 著作成果 (Books)
 
+<ul class="patent-list">
 {% for post in site.books reversed %}
-  * **[{{ post.title }}]({{ post.url }})**
+  <li>
+      <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+      <small>出版社: {{ post.publisher }} ({{ post.date | date: "%Y" }})</small>
+  </li>
 {% endfor %}
+</ul>
+
 ---
 
 ## 5. 论文成果 (Publications)
-
 
 {% for post in site.publications reversed limit:5 %}
   {% include archive-single.html %}
