@@ -57,8 +57,6 @@ ul.patent-list li {
 
 * 智算融合网络异构资源弹性适配机制，进行，许长桥
 
-* 糖尿病肾病的“疾病-症候-症状关联”的临床评价指标体系与技术规范数据库的建立及挖掘，结项，关建峰
-
 * 认知互联网体系结构与服务模型研究，结项，关建峰
 
 * 未来移动互联网的流媒体认知传输控制协议研究，结项，许长桥
@@ -106,27 +104,37 @@ ul.patent-list li {
 
 ## 5. 论文成果 (Publications)
 
-<ul class="research-list">
+<ul class="patent-list">
 {% for post in site.publications reversed limit:5 %}
   <li>
-      <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
-      <br>
-      <span class="venue-meta">
-        {{ post.venue }} {% if post.date %}| {{ post.date | date: "%Y" }}{% endif %}
-      </span>
+      {% if post.authors %}{{ post.authors }}. {% endif %}
+      "<strong>{{ post.title }}</strong>." 
+      <i>{{ post.venue }}</i>, 
+      {{ post.date | date: "%Y" }}.
+      {% if post.paper_level %}
+        <span style="color: #d9534f; font-weight: bold; font-size: 0.85em;"> [{{ post.paper_level }}]</span>
+      {% endif %}
+      {% if post.paperurl %}
+        <a href="{{ post.paperurl }}" target="_blank">[PDF]</a>
+      {% endif %}
   </li>
 {% endfor %}
 </ul>
 
 <div id="more-papers" style="display:none;">
-  <ul class="research-list">
+  <ul class="patent-list">
   {% for post in site.publications reversed offset:5 %}
     <li>
-        <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
-        <br>
-        <span class="venue-meta">
-          {{ post.venue }} {% if post.date %}| {{ post.date | date: "%Y" }}{% endif %}
-        </span>
+        {% if post.authors %}{{ post.authors }}. {% endif %}
+        "<strong>{{ post.title }}</strong>." 
+        <i>{{ post.venue }}</i>, 
+        {{ post.date | date: "%Y" }}.
+        {% if post.paper_level %}
+          <span style="color: #d9534f; font-weight: bold; font-size: 0.85em;"> [{{ post.paper_level }}]</span>
+        {% endif %}
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" target="_blank">[PDF]</a>
+        {% endif %}
     </li>
   {% endfor %}
   </ul>
