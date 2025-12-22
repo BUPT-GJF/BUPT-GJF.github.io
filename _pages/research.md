@@ -104,6 +104,7 @@ ul.patent-list li {
 
 ## 5. 论文成果 (Publications)
 
+<h3 style="font-size: 1.2em;">期刊论文 (Journal Articles)</h3>
 <ul class="patent-list">
 {% assign journals = site.publications | where: "type", "journal" | sort: "date" | reverse %}
 {% for post in journals %}
@@ -112,11 +113,34 @@ ul.patent-list li {
       "<strong>{{ post.title }}</strong>." 
       <i>{{ post.venue }}</i>, 
       {{ post.date | date: "%Y" }}.
-      
       {% if post.paper_level and post.paper_level != "" %}
         <span style="background-color: #ebf5ff; color: #007bff; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-left: 5px;">
           [{{ post.paper_level }}]
         </span>
+      {% endif %}
+      {% if post.paperurl %}
+        <a href="{{ post.paperurl }}" target="_blank" style="margin-left:5px;">[PDF]</a>
+      {% endif %}
+  </li>
+{% endfor %}
+</ul>
+
+<h3 style="font-size: 1.2em; margin-top: 20px;">会议论文 (Conference Papers)</h3>
+<ul class="patent-list">
+{% assign conferences = site.publications | where: "type", "conference" | sort: "date" | reverse %}
+{% for post in conferences limit:5 %}
+  <li>
+      {{ post.authors }}. 
+      "<strong>{{ post.title }}</strong>." 
+      <i>{{ post.venue }}</i>, 
+      {{ post.date | date: "%Y" }}.
+      {% if post.paper_level and post.paper_level != "" %}
+        <span style="background-color: #fff3e6; color: #fd7e14; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-left: 5px;">
+          [{{ post.paper_level }}]
+        </span>
+      {% endif %}
+      {% if post.paperurl %}
+        <a href="{{ post.paperurl }}" target="_blank" style="margin-left:5px;">[PDF]</a>
       {% endif %}
   </li>
 {% endfor %}
@@ -124,21 +148,23 @@ ul.patent-list li {
 
 <div id="more-papers" style="display:none;">
   <ul class="patent-list">
-  {% for post in site.publications reversed offset:5 %}
+  {% for post in conferences offset:5 %}
     <li>
-        {% if post.authors %}{{ post.authors }}. {% endif %}
+        {{ post.authors }}. 
         "<strong>{{ post.title }}</strong>." 
         <i>{{ post.venue }}</i>, 
         {{ post.date | date: "%Y" }}.
-        {% if post.paper_level %}
-          <span style="color: #d9534f; font-weight: bold; font-size: 0.85em;"> [{{ post.paper_level }}]</span>
+        {% if post.paper_level and post.paper_level != "" %}
+          <span style="background-color: #fff3e6; color: #fd7e14; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-left: 5px;">
+            [{{ post.paper_level }}]
+          </span>
         {% endif %}
         {% if post.paperurl %}
-          <a href="{{ post.paperurl }}" target="_blank">[PDF]</a>
+          <a href="{{ post.paperurl }}" target="_blank" style="margin-left:5px;">[PDF]</a>
         {% endif %}
     </li>
   {% endfor %}
   </ul>
 </div>
 
-<button id="btn-papers" class="show-more-btn" onclick="toggleSection('more-papers', 'btn-papers')">展开全部 (Show All)</button>
+<button id="btn-papers" class="show-more-btn" onclick="toggleSection('more-papers', 'btn-papers')">展开全部会议论文 (Show All)</button>
