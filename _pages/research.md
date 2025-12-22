@@ -105,17 +105,18 @@ ul.patent-list li {
 ## 5. 论文成果 (Publications)
 
 <ul class="patent-list">
-{% for post in site.publications reversed limit:5 %}
+{% assign journals = site.publications | where: "type", "journal" | sort: "date" | reverse %}
+{% for post in journals %}
   <li>
-      {% if post.authors %}{{ post.authors }}. {% endif %}
+      {{ post.authors }}. 
       "<strong>{{ post.title }}</strong>." 
       <i>{{ post.venue }}</i>, 
       {{ post.date | date: "%Y" }}.
-      {% if post.paper_level %}
-        <span style="color: #d9534f; font-weight: bold; font-size: 0.85em;"> [{{ post.paper_level }}]</span>
-      {% endif %}
-      {% if post.paperurl %}
-        <a href="{{ post.paperurl }}" target="_blank">[PDF]</a>
+      
+      {% if post.paper_level and post.paper_level != "" %}
+        <span style="background-color: #ebf5ff; color: #007bff; padding: 2px 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-left: 5px;">
+          [{{ post.paper_level }}]
+        </span>
       {% endif %}
   </li>
 {% endfor %}
